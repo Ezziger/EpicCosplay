@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentaireController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\CosplayController;
@@ -23,3 +24,5 @@ Route::post('custom-registration', [CustomAuthController::class, 'customRegistra
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 Route::resource('cosplays', CosplayController::class);
+
+Route::post('commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');

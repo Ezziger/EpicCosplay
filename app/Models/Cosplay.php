@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cosplay extends Model
 {
     use HasFactory;
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'nom',
         'personnage',
@@ -23,7 +25,7 @@ class Cosplay extends Model
         return $this->BelongsTo('App\Users');
     }
 
-    public function commentaire() {
-        return $this->hasMany('App\Commentaires');
+    public function commentaires() {
+        return $this->hasMany(Commentaire::class)->whereNull('parent_id');
     }
 }

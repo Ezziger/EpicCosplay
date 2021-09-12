@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\Cosplay;
 
 class CosplayController extends Controller
@@ -54,7 +55,7 @@ class CosplayController extends Controller
         $newCosplay->user_id = auth()->user()->id;
         $newCosplay->image = '/images/' . $imageName;
         $newCosplay->save();
-        return back()->with('success', 'Votre image a été sauvegardée avec succès !' );
+        return back()->with('success', 'Votre cosplay a été sauvegardée avec succès !' );
         }
     }
 
@@ -66,7 +67,9 @@ class CosplayController extends Controller
      */
     public function show($id)
     {
-        //
+        $cosplay = Cosplay::find($id);
+        $commentaires = Commentaire::all();
+        return view('cosplays.show', compact('cosplay', 'commentaires'));
     }
 
     /**
@@ -77,9 +80,9 @@ class CosplayController extends Controller
      */
     public function edit($id)
     {
-        $categories = Categorie::all();
+        $categorie = Categorie::all();
         $cosplay = Cosplay::findOrFail($id);
-        return view('cosplays.edit', compact('cosplay', 'categories'));
+        return view('cosplays.edit', compact('cosplay', 'categorie'));
 
     }
 

@@ -20,6 +20,7 @@ class CreateCommentairesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('cosplay_id');
             $table->foreign('cosplay_id')->references('id')->on('cosplays');
+            $table->integer('parent_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

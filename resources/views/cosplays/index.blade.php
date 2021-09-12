@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         @foreach($cosplays as $cosplay)
-        <div class="card col-md-3" style="width: 18rem;">
+        <div class="card col-md-3 m-4" style="width: 18rem;">
             <img src="{{ $cosplay->image }}" class="card-img-top" alt="{{ $cosplay->nom }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $cosplay->nom }}</h5>
@@ -16,6 +16,7 @@
                 <li class="list-group-item">Posté par {{ $cosplay->name }}</li>        
             </ul>
             <div class="card-body">
+            <a href="{{ route('cosplays.show', $cosplay->id) }}" class="btn btn-primary">View Post</a>
                 <a href="{{ route('cosplays.edit', $cosplay->id) }}" class="card-link">Editer</a>
                 <form action="{{ route('cosplays.destroy', $cosplay->id) }}" method="POST">
                     @csrf
